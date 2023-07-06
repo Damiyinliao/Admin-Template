@@ -9,6 +9,8 @@ import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import viteCompression from 'vite-plugin-compression';
 import { PluginOption } from 'vite';
+import { createHtmlPlugin } from 'vite-plugin-html';
+import svgLoader from 'vite-svg-loader';
 
 export const createVitePlugins = (viteEnv: ViteEnv): PluginOption[] => {
   return [
@@ -20,10 +22,32 @@ export const createVitePlugins = (viteEnv: ViteEnv): PluginOption[] => {
     vueDevTools(),
     // 使用UnoCSS
     UnoCSS(),
-    // 使用 svg 图标
+    // 使用 svg 图标 方法1
     createSvgIconsPlugin({
       iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
-      symbolId: 'icon-[dir]-name'
+      symbolId: 'icon-[dir]-[name]'
+    }),
+    // 使用svg图标 方法2
+    svgLoader({
+      // svgoConfig: {
+      // plugins: [
+      //   {
+      //     name: 'cleanupIDs',
+      //     params: {
+      //       prefix: {
+      //         // 避免不同 svg 内部的 filter id 相同导致样式错乱
+      //         // https://github.com/svg/svgo/issues/674#issuecomment-328774019
+      //         toString() {
+      //           let count: number = this.count ?? 0;
+      //           count++;
+      //           this.count = count;
+      //           return `svg-random-${count.toString(36)}-`;
+      //         }
+      //       } as string
+      //     }
+      //   }
+      // ]
+      // }
     }),
     // 自动全局引入组件
     AutoImport({
@@ -50,7 +74,15 @@ export const createVitePlugins = (viteEnv: ViteEnv): PluginOption[] => {
       exclude: [/[\\/]node_modules[\\/]/]
     }),
     // 根据 compress 配置，生成不同的压缩规则
-    createCompression(viteEnv)
+    createCompression(viteEnv),
+    // 注入变量到 html 文件 (如：VITE_GLOB_APP_TITLE)
+    createHtmlPlugin({
+      inject: {
+        data: {
+          title: viteEnv.VITE_GLOB_TITLE
+        }
+      }
+    })
   ];
 };
 
