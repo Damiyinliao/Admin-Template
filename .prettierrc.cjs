@@ -1,6 +1,6 @@
 module.exports = {
   // 一行的字符数，如果超过会进行换行，默认为80
-  printWidth: 120,
+  printWidth: 100,
   // 不超过120个字符就不要换行了
   proseWrap: 'preserve',
   // 一个tab代表几个空格数，默认为2

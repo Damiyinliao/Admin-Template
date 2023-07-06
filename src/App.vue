@@ -1,10 +1,11 @@
-<script setup lang="ts">
-import {loadEnv} from 'vite';
-
-</script>
-
 <template>
-  <div>这是一个首页还未完成</div>
+  <div>
+    <SvgRawPro name="vue"></SvgRawPro>
+  </div>
 </template>
+
+<script setup lang="ts">
+// import VueSvg from '@/assets/icons/vue.svg?component';
+</script>
 
 <style scoped></style>
