@@ -19,6 +19,6 @@ module.exports = {
   },
   plugins: ['vue', '@typescript-eslint'],
   rules: {
-    'vue/multi-word-component-names': 'off'
+    'vue/multi-word-component-names': 'off' // 关闭组件名必须是多个单词的规则
   }
 };

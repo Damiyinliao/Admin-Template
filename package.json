@@ -15,6 +15,7 @@
   "dependencies": {
     "axios": "^1.4.0",
     "pinia": "^2.1.4",
+    "pinia-plugin-persistedstate": "^3.1.0",
     "vue": "^3.2.47",
     "vue-router": "^4.2.2",
     "vue-types": "^5.1.0"
