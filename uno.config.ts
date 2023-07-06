@@ -1,5 +1,5 @@
 // uno.config.ts
-import { defineConfig, presetUno, presetIcons } from 'unocss'
+import { defineConfig, presetUno, presetIcons } from 'unocss';
 
 export default defineConfig({
   // ...UnoCSS options
@@ -12,4 +12,4 @@ export default defineConfig({
   },
   // eslint-disable-next-line prettier/prettier
   presets: [presetUno(), presetIcons()]
-})
+});
